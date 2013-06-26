@@ -1,19 +1,25 @@
   var cradle = require('cradle');
-  var db = new(cradle.Connection)(process.env.WERCKER_COUCHDB_HOST, 5984).database('starwars');
-  console.log(process.env.WERCKER_COUCHDB_HOST);
+  var db = new(cradle.Connection)(process.env.WERCKER_COUCHDB_HOST, 5984).database('cities');
+  db.create();
 
-  db.get('vader', function (err, doc) {
-      doc.name; // 'Darth Vader'
-      assert.equal(doc.force, 'dark');
-  });
-
-  db.save('skywalker', {
-      force: 'light',
-      name: 'Luke Skywalker'
-  }, function (err, res) {
+  
+  db.save([
+    { name : 'San Francisco'},
+    { name : 'Amsterdam'},
+    { name : 'Berlin'},
+    { name : 'New York'},
+  ], function (err, res) {
       if (err) {
           // Handle error
       } else {
           // Handle success
       }
+  });
+
+  db.all(function(err, res) {
+    if (err) {
+        console.log('Error: %s', err)
+    } else {
+        console.log(res);
+    }
   });
