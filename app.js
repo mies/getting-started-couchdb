@@ -9,6 +9,7 @@
     { name : 'New York'},
   ], function (err, res) {
       if (err) {
+          console.log('error');
           console.log(err)
       } else {
           console.log('cities saved!');
