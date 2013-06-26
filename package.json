@@ -2,9 +2,7 @@
   "name" : "getting-started-couchdb",
   "version" : "0.0.1",
   "dependencies" : {
-    "promised-io" : "0.3.3",
-    "request" : "2.21.0",
-    "couchdb" : "0.3.8"
+    "cradle" : "0.6.6"
   },
   "scripts": {
     "test" : "node app.js",

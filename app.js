@@ -1,14 +1,18 @@
-var couchdb = require('couchdb');
-var client  = couchdb.createClient(5984, process.env.WERCKER_COUCHDB_HOST);
-var db      = client.db('helloCouch');
+  var cradle = require('cradle');
+  var db = new(cradle.Connection)(process.env.WERCKER_COUCHDB_HOST, 5984).database('starwars');
 
-var doc = { _id: 'helloCouch', text: 'Hello CouchDB!' };
-
-db.saveDoc(doc).then(function() {
-  console.log(process.env.WERCKER_COUDB_HOST);
-  console.log('document saved!');
-  db.openDoc('helloCouch').then(function(doc) {
-    console.log('retrieved document!');
-    console.log(JSON.stringify(doc));
+  db.get('vader', function (err, doc) {
+      doc.name; // 'Darth Vader'
+      assert.equal(doc.force, 'dark');
   });
-});
+
+  db.save('skywalker', {
+      force: 'light',
+      name: 'Luke Skywalker'
+  }, function (err, res) {
+      if (err) {
+          // Handle error
+      } else {
+          // Handle success
+      }
+  });
