@@ -1,8 +1,7 @@
   var cradle = require('cradle');
   var db = new(cradle.Connection)(process.env.WERCKER_COUCHDB_HOST, 5984).database('cities');
   db.create();
-
-  
+  console.log(db)
   db.save([
     { name : 'San Francisco'},
     { name : 'Amsterdam'},
@@ -10,9 +9,9 @@
     { name : 'New York'},
   ], function (err, res) {
       if (err) {
-          // Handle error
+          console.log(err)
       } else {
-          // Handle success
+          console.log('cities saved!');
       }
   });
 
