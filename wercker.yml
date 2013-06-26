@@ -1,0 +1,7 @@
+box: wercker/nodejs
+services:
+  - mies/couchdb
+# Build definition
+build:
+  steps: 
+    - npm-install
