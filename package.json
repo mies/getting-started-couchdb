@@ -1,0 +1,7 @@
+{
+  "name" : "getting-started-couchdb",
+  "version" : "0.0.1",
+  "depedencies" : {
+    "couchdb" : "0.3.8"
+  }
+}
