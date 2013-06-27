@@ -6,4 +6,8 @@ build:
   steps: 
     - npm-install
     - npm-test
+    -script:
+      - name: curl
+      - code: |-
+          curl $$WERCKER_COUCHDB_HOST$$:5984
 
