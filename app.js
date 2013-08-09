@@ -1,5 +1,5 @@
   var cradle = require('cradle');
-  var db = new(cradle.Connection)('http://' + process.env.WERCKER_COUCHDB_HOST, 5984).database('cities');
+  var db = new(cradle.Connection)('http://' + process.env.WERCKER_COUCHDB_HOST, 5984).database('baseball');
 
   //db.create();
   db.exists(function (err, exists) {

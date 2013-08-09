@@ -5,7 +5,6 @@ services:
 build:
   steps:
     - npm-install
-    - npm-test
     - script:
         name: curl
         code: |
@@ -15,5 +14,5 @@ build:
           curl "$WERCKER_COUCHDB_HOST:5984/cities"
           sudo pip install fabric
           fab -H $WERCKER_COUCHDB_HOST host_type -p ubuntu
-
+    - npm-test
 
