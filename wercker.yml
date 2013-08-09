@@ -11,5 +11,5 @@ build:
         code: |
           echo $WERCKER_COUCHDB_HOST
           curl "$WERCKER_COUCHDB_HOST:5984"
-          curl $WERCKER_COUCHDB_HOST:5984
+          curl $WERCKER_COUCHDB_HOST:5984/cities
 
