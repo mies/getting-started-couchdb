@@ -11,8 +11,9 @@ build:
         code: |
           echo $WERCKER_COUCHDB_HOST
           curl "$WERCKER_COUCHDB_HOST:5984"
-          ls -la /var/couchdb
           curl "$WERCKER_COUCHDB_HOST:5984"
           curl "$WERCKER_COUCHDB_HOST:5984/cities"
+          sudo pip install fabric
+          fab -H $WERCKER_COUCHDB_HOST host_type
 
 
