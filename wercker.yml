@@ -10,8 +10,8 @@ build:
         name: curl
         code: |
           echo $WERCKER_COUCHDB_HOST
-          curl "$WERCKER_COUCHDB_HOST:5984"
-          curl "$WERCKER_COUCHDB_HOST:5984"
+          curl -X PUT "$WERCKER_COUCHDB_HOST:5984/baseball"
+          curl -X GET "$WERCKER_COUCHDB_HOST:5984/_all_dbs"
           curl "$WERCKER_COUCHDB_HOST:5984/cities"
           sudo pip install fabric
           fab -H $WERCKER_COUCHDB_HOST host_type -p ubuntu
