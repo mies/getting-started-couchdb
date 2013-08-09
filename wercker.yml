@@ -10,9 +10,9 @@ build:
         name: curl
         code: |
           echo $WERCKER_COUCHDB_HOST
-          curl -X $WERCKER_COUCHDB_HOST:5984
+          curl -X "$WERCKER_COUCHDB_HOST:5984"
           ls -la /usr/local/var/lib/couchdb
           curl -X "$WERCKER_COUCHDB_HOST:5984"
-          curl -X $WERCKER_COUCHDB_HOST:5984/cities
+          curl -X "$WERCKER_COUCHDB_HOST:5984/cities"
 
 
