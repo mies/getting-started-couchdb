@@ -2,7 +2,7 @@
   "name" : "getting-started-couchdb",
   "version" : "0.0.1",
   "dependencies" : {
-    "cradle": "0.6.6"
+    "nano": "4.1.1"
   },
   "scripts": {
     "test" : "node app.js",

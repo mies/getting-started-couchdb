@@ -1,37 +1,21 @@
-  var cradle = require('cradle');
-  var db = new(cradle.Connection)('http://' + process.env.WERCKER_COUCHDB_HOST, 5984).database('baseball');
+var nano = require('nano')('http://' + process.env.WERCKER_COUCHDB_HOST + ':5984');
+var db_name = "test";
+var db = nano.use(db_name);
 
-  //db.create();
-  db.exists(function (err, exists) {
-    if (err) {
-      console.log('error', err);
-    } else if (exists) {
-      console.log('the force is with you.');
-    } else {
-      console.log('database does not exists.');
-      db.create();
-      /* populate design documents */
-    }
-  });
-
-  db.save([
-    { name : 'San Francisco'},
-    { name : 'Amsterdam'},
-    { name : 'Berlin'},
-    { name : 'New York'},
-  ], function (err, res) {
-      if (err) {
-          console.log('error');
-          console.log(err)
-      } else {
-          console.log('cities saved!');
+function insert_doc(doc, tried) {
+  db.insert(doc,
+    function (error,http_body,http_headers) {
+      if(error) {
+        if(error.message === 'no_db_file'  && tried < 1) {
+          // create database and retry
+          return nano.db.create(db_name, function () {
+            insert_doc(doc, tried+1);
+          });
+        }
+        else { return console.log(error); }
       }
+      console.log(http_body);
   });
+}
 
-  db.all(function(err, res) {
-    if (err) {
-        console.log('Error: %s', err)
-    } else {
-        console.log(res);
-    }
-  });
+insert_doc({nano: true}, 0);
