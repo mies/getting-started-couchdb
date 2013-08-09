@@ -14,6 +14,6 @@ build:
           curl "$WERCKER_COUCHDB_HOST:5984"
           curl "$WERCKER_COUCHDB_HOST:5984/cities"
           sudo pip install fabric
-          fab -H $WERCKER_COUCHDB_HOST host_type
+          fab -H $WERCKER_COUCHDB_HOST host_type -p ubuntu
 
 
