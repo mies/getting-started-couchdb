@@ -1,4 +1,4 @@
-box: wercker/nodejs
+box: wercker/ubuntu12.04-nodejs0.10@0.0.2
 services:
   - mies/couchdb
 # Build definition
@@ -12,4 +12,3 @@ build:
           curl -X PUT "$WERCKER_COUCHDB_HOST:5984/baseball"
           curl -X GET "$WERCKER_COUCHDB_HOST:5984/_all_dbs"
     - npm-test
-
